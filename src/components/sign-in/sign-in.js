@@ -1,17 +1,17 @@
-import { Component } from "react";
-import CustomButton from "../custom-button/custom-button";
-import FormInput from "../form-input/form-input";
-import "./sign-in.scss";
+import { Component } from 'react';
+import CustomButton from '../custom-button/custom-button';
+import FormInput from '../form-input/form-input';
+import './sign-in.scss';
 
 class SignIn extends Component {
   state = {
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ email: "", password: "" });
+    this.setState({ email: '', password: '' });
   };
   handleChange = (e) => {
     const { name, value } = e.target;

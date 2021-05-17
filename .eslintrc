@@ -1,0 +1,15 @@
+{
+    "extends": ["react-app", "react-app/jest"],
+    "rules": {
+      "quotes": ["error", "single"],
+      "no-undef": "error",
+      "no-unused-vars": "error",
+      "no-trailing-spaces": "error",
+      "no-param-reassign": "error",
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "semi-spacing": "error",
+      "semi": "error"
+    }
+  }
+  

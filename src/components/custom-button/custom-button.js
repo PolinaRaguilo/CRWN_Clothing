@@ -1,4 +1,4 @@
-import "./custom-button.scss";
+import './custom-button.scss';
 
 const CustomButton = ({ children, ...otherProps }) => {
   return (

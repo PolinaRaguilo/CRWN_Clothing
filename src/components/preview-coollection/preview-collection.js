@@ -1,5 +1,5 @@
-import CollectionItem from "../collection-item/collection-item";
-import "./preview-collection.scss";
+import CollectionItem from '../collection-item/collection-item';
+import './preview-collection.scss';
 
 const PreviewCollection = ({ title, items }) => {
   return (
