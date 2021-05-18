@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
 import { auth, createUserProfileDocument } from './firebase/firebase-utils';
@@ -19,10 +19,8 @@ class App extends Component {
 
         useRef.onSnapshot((snapshot) => {
           this.props.setCurrentUser({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data(),
-            },
+            id: snapshot.id,
+            ...snapshot.data(),
           });
         });
       } else {
@@ -42,7 +40,13 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route path="/signin" component={SignUpAndSignIn} />
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              this.props.currentUser ? <Redirect to="/" /> : <SignUpAndSignIn />
+            }
+          />
         </Switch>
       </div>
     );
@@ -55,4 +59,10 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = ({ user }) => {
+  return {
+    currentUser: user.currentUser,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
