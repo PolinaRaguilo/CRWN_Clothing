@@ -4,10 +4,12 @@ import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import Header from './components/header/header';
 import { auth, createUserProfileDocument } from './firebase/firebase-utils';
+import CheckoutPage from './pages/checkout-page/checkout-page';
 import HomePage from './pages/home-page/home-page';
 import ShopPage from './pages/shop-page/shop-page';
 import SignUpAndSignIn from './pages/signIn-sighUp/signIn-sighUp';
 import { setCurrentUser } from './redux/user/user-actions';
+import { selectCurrentUser } from './redux/user/user-selector';
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -47,6 +49,7 @@ class App extends Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignUpAndSignIn />
             }
           />
+          <Route exact path="/checkout" component={CheckoutPage} />
         </Switch>
       </div>
     );
@@ -59,9 +62,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = (state) => {
   return {
-    currentUser: user.currentUser,
+    currentUser: selectCurrentUser(state),
   };
 };
 
