@@ -7,19 +7,24 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import logger from 'redux-logger';
 import rootReducer from './redux/root-reducer';
+import persistStore from 'redux-persist/es/persistStore';
+import { PersistGate } from 'redux-persist/integration/react';
 
-const middlewares = [logger];
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+const middlewares = [logger];
 const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares)),
 );
+const persistor = persistStore(store);
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
