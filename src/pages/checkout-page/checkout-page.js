@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
 import CheckoutItem from '../../components/checkout-item/checkout-item';
+import StripeCheckoutButton from '../../components/stripe-button/stripe-button';
 import {
   selectCartItems,
   selectCartTotal,
 } from '../../redux/cart/cart-selectors';
-import StripeCheckoutButton from '../../stripe-button/stripe-button';
+
 import './checkout-page.scss';
 
 const CheckoutPage = ({ cartItems, totalPrice }) => {
