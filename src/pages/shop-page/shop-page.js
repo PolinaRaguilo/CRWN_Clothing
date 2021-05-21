@@ -5,6 +5,7 @@ import CollectionsOverview from '../../components/collections-overview/collectio
 import WithSpinner from '../../components/with-spinner/with-spinner';
 
 import { fetchCollectionsStartAsync } from '../../redux/shop/shop-actions';
+import { selectIsCollectionsLoaded } from '../../redux/shop/shop-selectors';
 import CollectionPage from '../collection-page/collection-page';
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
@@ -32,7 +33,7 @@ class ShopPage extends Component {
           path={`${this.props.match.path}/:collectionId`}
           render={(props) => (
             <CollectionPageWithSpinner
-              isLoading={this.props.loading}
+              isLoading={!this.props.isCollectionLoaded}
               {...props}
             />
           )}
@@ -45,6 +46,7 @@ class ShopPage extends Component {
 const mapStateToProps = (state) => {
   return {
     loading: state.shop.isFetching,
+    isCollectionLoaded: selectIsCollectionsLoaded(state),
   };
 };
 
