@@ -9,11 +9,15 @@ import logger from 'redux-logger';
 import rootReducer from './redux/root-reducer';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import thunk from 'redux-thunk';
+import createSagaMiddlware from 'redux-saga';
+
+import rootSaga from './redux/root-sagas';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const middlewares = [thunk];
+const sagaMiddleware = createSagaMiddlware();
+
+const middlewares = [sagaMiddleware];
 
 if (process.env.NODE_ENV === 'development') {
   middlewares.push(logger);
@@ -23,6 +27,8 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares)),
 );
+
+sagaMiddleware.run(rootSaga);
 const persistor = persistStore(store);
 
 ReactDOM.render(

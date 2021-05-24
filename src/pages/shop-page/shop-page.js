@@ -4,7 +4,7 @@ import { Route } from 'react-router';
 import CollectionsOverview from '../../components/collections-overview/collections-overview';
 import WithSpinner from '../../components/with-spinner/with-spinner';
 
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop-actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop-actions';
 import { selectIsCollectionsLoaded } from '../../redux/shop/shop-selectors';
 import CollectionPage from '../collection-page/collection-page';
 
@@ -13,7 +13,7 @@ const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 class ShopPage extends Component {
   componentDidMount() {
-    this.props.fetchCollections();
+    this.props.fetchCollectionsStart();
   }
 
   render() {
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCollections: () => dispatch(fetchCollectionsStartAsync()),
+    fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
   };
 };
 
