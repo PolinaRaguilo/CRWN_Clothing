@@ -1,11 +1,13 @@
 import {
-  EMAIL_SIGN_IN_FAIL,
+  CHECK_USER_SESSION,
   EMAIL_SIGN_IN_START,
-  EMAIL_SIGN_IN_SUCCESS,
-  GOOGLE_SIGN_IN_FAIL,
   GOOGLE_SIGN_IN_START,
-  GOOGLE_SIGN_IN_SUCCESS,
   SET_CURRENT_USER,
+  SIGN_IN_FAIL,
+  SIGN_IN_SUCCESS,
+  SIGN_OUT_FAIL,
+  SIGN_OUT_START,
+  SIGN_OUT_SUCCESS,
 } from './user-types';
 
 export const setCurrentUser = (user) => {
@@ -21,16 +23,16 @@ export const googleSignInStart = () => {
   };
 };
 
-export const googleSignInSuccess = (user) => {
+export const signInSuccess = (user) => {
   return {
-    type: GOOGLE_SIGN_IN_SUCCESS,
+    type: SIGN_IN_SUCCESS,
     payload: user,
   };
 };
 
-export const googleSignInFail = (error) => {
+export const signInFail = (error) => {
   return {
-    type: GOOGLE_SIGN_IN_FAIL,
+    type: SIGN_IN_FAIL,
     payload: error,
   };
 };
@@ -42,16 +44,27 @@ export const emailSignInStart = (emailAndPassword) => {
   };
 };
 
-export const emailSignInSuccess = (user) => {
+export const checkUserSession = () => {
   return {
-    type: EMAIL_SIGN_IN_SUCCESS,
-    payload: user,
+    type: CHECK_USER_SESSION,
   };
 };
 
-export const emailSignInFail = (error) => {
+export const signOutStart = () => {
   return {
-    type: EMAIL_SIGN_IN_FAIL,
+    type: SIGN_OUT_START,
+  };
+};
+
+export const signOutSuccess = () => {
+  return {
+    type: SIGN_OUT_SUCCESS,
+  };
+};
+
+export const signOutFail = (error) => {
+  return {
+    type: SIGN_OUT_FAIL,
     payload: error,
   };
 };
