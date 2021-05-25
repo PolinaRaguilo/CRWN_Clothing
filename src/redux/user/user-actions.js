@@ -8,6 +8,9 @@ import {
   SIGN_OUT_FAIL,
   SIGN_OUT_START,
   SIGN_OUT_SUCCESS,
+  SIGN_UP_FAIL,
+  SIGN_UP_START,
+  SIGN_UP_SUCCESS,
 } from './user-types';
 
 export const setCurrentUser = (user) => {
@@ -65,6 +68,27 @@ export const signOutSuccess = () => {
 export const signOutFail = (error) => {
   return {
     type: SIGN_OUT_FAIL,
+    payload: error,
+  };
+};
+
+export const signUpStart = (userNew) => {
+  return {
+    type: SIGN_UP_START,
+    payload: userNew,
+  };
+};
+
+export const signUpSuccess = ({ user, additionalData }) => {
+  return {
+    type: SIGN_UP_SUCCESS,
+    payload: { user, additionalData },
+  };
+};
+
+export const signUpFail = (error) => {
+  return {
+    type: SIGN_UP_FAIL,
     payload: error,
   };
 };
