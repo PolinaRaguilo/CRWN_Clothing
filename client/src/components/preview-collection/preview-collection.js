@@ -1,11 +1,15 @@
 import CollectionItem from '../collection-item/collection-item';
-import './preview-collection.scss';
+import {
+  CollectionPreview,
+  CollectionPreviewContainer,
+  CollectionPreviewTitle,
+} from './preview-collection.style';
 
 const PreviewCollection = ({ title, items }) => {
   return (
-    <div className="collection-preview">
-      <h1 className="title">{title.toUpperCase()}</h1>
-      <div className="preview">
+    <CollectionPreviewContainer>
+      <CollectionPreviewTitle>{title.toUpperCase()}</CollectionPreviewTitle>
+      <CollectionPreview>
         {items
           .filter((item, idx) => idx < 4)
           .map((item) => {
@@ -19,8 +23,8 @@ const PreviewCollection = ({ title, items }) => {
               />
             );
           })}
-      </div>
-    </div>
+      </CollectionPreview>
+    </CollectionPreviewContainer>
   );
 };
 

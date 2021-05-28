@@ -8,7 +8,7 @@ import HomePage from './pages/home-page/home-page';
 import ShopPage from './pages/shop-page/shop-page';
 import CheckoutPage from './pages/checkout-page/checkout-page';
 import SignUpAndSignIn from './pages/signIn-sighUp/signIn-sighUp';
-import './App.css';
+import { GlobalStyle } from './global-styles';
 
 const App = ({ currentUser, checkUserSession }) => {
   useEffect(() => {
@@ -16,6 +16,7 @@ const App = ({ currentUser, checkUserSession }) => {
   }, [checkUserSession]);
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
